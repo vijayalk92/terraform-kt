@@ -16,7 +16,8 @@ resource "aws_subnet" "test-subnet-02" {
 
 resource "aws_network_interface" "test-eni-02" {
   subnet_id   = aws_subnet.test-subnet-02.id
-  private_ips = ["172.31.64.100"]
+  private_ip = var.private_ip_id
+  
 
   tags = {
     Name = "mq-tf-kt-eni"
@@ -40,7 +41,7 @@ resource "aws_ebs_volume" "test-ebs-volume-encrypted-02" {
 }
 
 resource "aws_instance" "test-ec2-02" {
-  ami           = "ami-0efdf839508ec2995"
+  ami           = var.ami_id
   instance_type = "t3.micro"
   tags = {
     Name = "mq-tf-kt-ec2"
